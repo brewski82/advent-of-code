@@ -1,9 +1,9 @@
-(defpackage #:advent-2024
+(defpackage #:advent-2024-day-1
   (:use #:common-lisp #:alexandria)
   (:import-from #:metabang-bind #:bind)
   (:import-from #:arrow-macros #:->> #:->))
 
-(in-package #:advent-2024)
+(in-package #:advent-2024-day-1)
 
 (defun day-1-part-1 ()
   (->> (read-file-into-sorted-lists "~/Downloads/input-1")
