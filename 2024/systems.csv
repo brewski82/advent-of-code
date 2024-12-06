@@ -62,3 +62,6 @@ metatilities-base-test, ghcr.io/ocicl/metatilities-base@sha256:52e79cf056404f58e
 cl-containers, ghcr.io/ocicl/cl-containers@sha256:a799965cce2a1c00bb4c9ca569b02aa7b7e1adf418ea8833cfd47780b2d7ae04, cl-containers-20240624-5f87798/cl-containers.asd
 cl-containers-test, ghcr.io/ocicl/cl-containers@sha256:a799965cce2a1c00bb4c9ca569b02aa7b7e1adf418ea8833cfd47780b2d7ae04, cl-containers-20240624-5f87798/cl-containers-test.asd
 cl-containers-documentation, ghcr.io/ocicl/cl-containers@sha256:a799965cce2a1c00bb4c9ca569b02aa7b7e1adf418ea8833cfd47780b2d7ae04, cl-containers-20240624-5f87798/cl-containers-documentation.asd
+array-operations, ghcr.io/ocicl/array-operations@sha256:9cba16bc30a3a723ce047cce85b89c3bec15a3939b63e3334f03a6d131d214a2, array-operations-20240503-935f0e5/array-operations.asd
+let-plus, ghcr.io/ocicl/let-plus@sha256:12fa3629348fa175a3313ed1f10511d44229a8b554bfa88d00a63ae67fb45f3b, let-plus-20240503-455e657/let-plus.asd
+anaphora, ghcr.io/ocicl/anaphora@sha256:55f1c61b7826c5451a60b4b4522e35e770504bbfa2036d8becbf21f6d654925a, anaphora-20240503-bcf0f74/anaphora.asd

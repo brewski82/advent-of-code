@@ -1,0 +1,106 @@
+(defpackage #:advent-2024-day-6
+  (:use #:common-lisp #:alexandria #:cl-ppcre)
+  (:import-from #:metabang-bind #:bind)
+  (:import-from #:arrow-macros #:->> #:-> #:-> #:some->>))
+
+(in-package #:advent-2024-day-6)
+
+(defparameter *matrix* nil)
+
+(defun day-6-part-1 ()
+  (load-input "~/Downloads/input-6")
+  (apply #'patrol (find-start-position))
+  (count-steps))
+
+(defun load-input (file)
+  (with-open-file (in file)
+    (loop for line = (read-line in nil nil)
+          while line
+          collect line into lines
+          finally (setf *matrix* (make-array (list (length (first lines))
+                                                   (length lines))
+                                             :initial-contents lines)))))
+(defun find-start-position ()
+  (array-operations/utilities:nested-loop (i j) (array-dimensions *matrix*)
+    (when (char-equal #\^ (aref *matrix* i j))
+      (return-from find-start-position (list i j)))))
+
+(defun patrol (initial-row initial-col)
+  (loop
+    for (direction row col)
+      = (list :up initial-row initial-col)
+        then (advance direction row col)
+    until (done-p direction row col)
+    do (mark-position row col)
+    finally (mark-position row col)))
+
+(defun count-steps ()
+  (bind ((count 0))
+    (array-operations/utilities:nested-loop (i j) (array-dimensions *matrix*)
+      (when (char-equal #\X (aref *matrix* i j))
+        (incf count)))
+    count))
+
+(defun advance (direction row col)
+  (ecase direction
+    (:up (if (obstacle-p (1- row) col)
+             (advance :right row col)
+             (list :up (1- row) col)))
+    (:down (if (obstacle-p (1+ row) col)
+             (advance :left row col)
+             (list :down (1+ row) col)))
+    (:right (if (obstacle-p row (1+ col))
+                (advance :down row col)
+                (list :right row (1+ col))))
+    (:left (if (obstacle-p row (1- col))
+                (advance :up row col)
+                (list :left row (1- col))))))
+
+(defun done-p (direction row col)
+  (ecase direction
+    (:up (zerop row))
+    (:down (= row (1- (array-dimension *matrix* 0))))
+    (:right (= col (1- (array-dimension *matrix* 1))))
+    (:left (zerop col))))
+
+(defun obstacle-p (row col)
+  (char-equal #\# (aref *matrix* row col)))
+
+(defun mark-position (row col)
+  (setf (aref *matrix* row col) #\X))
+
+(defun day-6-part-2 ()
+  (load-input "~/Downloads/input-6")
+  (bind ((original-matrix (copy-array *matrix*))
+         ((initial-row initial-col) (find-start-position))
+         (count 0))
+    (array-operations/utilities:nested-loop (row col) (array-dimensions original-matrix)
+      (unless (potential-blocker-p row col)
+        (setf *matrix* (copy-array original-matrix))
+        (setf (aref *matrix* row col) #\#)
+        (when (guard-stuck-p initial-row initial-col)
+          (incf count))))
+    count))
+
+(defun potential-blocker-p (row col)
+  (or (char-equal #\^ (aref *matrix* row col))
+      (char-equal #\# (aref *matrix* row col))))
+
+(defun guard-stuck-p (initial-row initial-col)
+  (loop
+    for (slow-direction slow-row slow-col)
+      = (list :up initial-row initial-col)
+        then (advance slow-direction slow-row slow-col)
+    for (fast-direction fast-row fast-col)
+      = (advance :up initial-row initial-col)
+        then (unless (done-p fast-direction fast-row fast-col)
+               (bind (((next-direction next-row next-col)
+                       (advance fast-direction fast-row fast-col)))
+                 (unless (done-p next-direction next-row next-col)
+                   (advance next-direction next-row next-col))))
+    until (or (null fast-direction)
+              (done-p fast-direction fast-row fast-col)
+              (equalp (list slow-direction slow-row slow-col)
+                      (list fast-direction fast-row fast-col)))
+    finally (return (equalp (list slow-direction slow-row slow-col)
+                            (list fast-direction fast-row fast-col)))))
