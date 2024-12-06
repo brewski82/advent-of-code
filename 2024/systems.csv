@@ -53,3 +53,12 @@ trivial-features-tests, ghcr.io/ocicl/trivial-features@sha256:e278e24d39060fc7d3
 parse-declarations-1.0, ghcr.io/ocicl/parse-declarations-1.0@sha256:9305fa9624205b16fd1fc51cb1cc4282a18e50eee9ac75b66a14f6f2c5df9518, parse-declarations-20240503-549aebb/parse-declarations-1.0.asd
 trivial-file-size, ghcr.io/ocicl/trivial-file-size@sha256:24e26c790095d887cb3d0e53db92b9ecc070f86bc9e71a41a743bfdb23dacc95, trivial-file-size-20240503-341a502/trivial-file-size.asd
 trivial-macroexpand-all, ghcr.io/ocicl/trivial-macroexpand-all@sha256:d89343eaceeff9a16425b8a44c6036eb33bb93ea63794a448277729800eb5a66, trivial-macroexpand-all-20240503-933270a/trivial-macroexpand-all.asd
+cl-graph, ghcr.io/ocicl/cl-graph@sha256:642f0fdc22cd212a24e2c60335483018e128cf2cfb2568f1fd36fad88ad605fe, cl-graph-20240503-e215efd/cl-graph.asd
+cl-graph-test, ghcr.io/ocicl/cl-graph@sha256:642f0fdc22cd212a24e2c60335483018e128cf2cfb2568f1fd36fad88ad605fe, cl-graph-20240503-e215efd/cl-graph-test.asd
+cl-graph_plus_hu.dwim.graphviz, ghcr.io/ocicl/cl-graph@sha256:642f0fdc22cd212a24e2c60335483018e128cf2cfb2568f1fd36fad88ad605fe, cl-graph-20240503-e215efd/cl-graph+hu.dwim.graphviz.asd
+asdf-system-connections, ghcr.io/ocicl/asdf-system-connections@sha256:5923a1b26d46b21cdb9734ee1f37de9c364b691bac9b029cbc9059d1fe230050, asdf-system-connections-20240503-9f08524/asdf-system-connections.asd
+metatilities-base, ghcr.io/ocicl/metatilities-base@sha256:52e79cf056404f58e3076e72b8c0901199d2c13e36543bc017fe279f96b9fe3f, metatilities-base-20240503-ef04337/metatilities-base.asd
+metatilities-base-test, ghcr.io/ocicl/metatilities-base@sha256:52e79cf056404f58e3076e72b8c0901199d2c13e36543bc017fe279f96b9fe3f, metatilities-base-20240503-ef04337/metatilities-base-test.asd
+cl-containers, ghcr.io/ocicl/cl-containers@sha256:a799965cce2a1c00bb4c9ca569b02aa7b7e1adf418ea8833cfd47780b2d7ae04, cl-containers-20240624-5f87798/cl-containers.asd
+cl-containers-test, ghcr.io/ocicl/cl-containers@sha256:a799965cce2a1c00bb4c9ca569b02aa7b7e1adf418ea8833cfd47780b2d7ae04, cl-containers-20240624-5f87798/cl-containers-test.asd
+cl-containers-documentation, ghcr.io/ocicl/cl-containers@sha256:a799965cce2a1c00bb4c9ca569b02aa7b7e1adf418ea8833cfd47780b2d7ae04, cl-containers-20240624-5f87798/cl-containers-documentation.asd
