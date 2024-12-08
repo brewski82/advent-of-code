@@ -65,3 +65,12 @@ cl-containers-documentation, ghcr.io/ocicl/cl-containers@sha256:a799965cce2a1c00
 array-operations, ghcr.io/ocicl/array-operations@sha256:9cba16bc30a3a723ce047cce85b89c3bec15a3939b63e3334f03a6d131d214a2, array-operations-20240503-935f0e5/array-operations.asd
 let-plus, ghcr.io/ocicl/let-plus@sha256:12fa3629348fa175a3313ed1f10511d44229a8b554bfa88d00a63ae67fb45f3b, let-plus-20240503-455e657/let-plus.asd
 anaphora, ghcr.io/ocicl/anaphora@sha256:55f1c61b7826c5451a60b4b4522e35e770504bbfa2036d8becbf21f6d654925a, anaphora-20240503-bcf0f74/anaphora.asd
+fset, ghcr.io/ocicl/fset@sha256:003cc0779e7222555907642323c66627faa595ea9a86bf57b1a00ca057d3ca93, fset-20241111-8873c56/fset.asd
+misc-extensions, ghcr.io/ocicl/misc-extensions@sha256:b088e311c2d17fdaa8797482dc893c6a8e9d01201e926db184abd056540affaa, misc-extensions-20240806-8d241e7/misc-extensions.asd
+random-state, ghcr.io/ocicl/random-state@sha256:590425d577dc77a433153704f932e06f5cdff7a0a8cb6d400d99f5a0399f67ef, random-state-20241112-a0ce649/random-state.asd
+random-state-viewer, ghcr.io/ocicl/random-state@sha256:590425d577dc77a433153704f932e06f5cdff7a0a8cb6d400d99f5a0399f67ef, random-state-20241112-a0ce649/random-state-viewer.asd
+random-state-test, ghcr.io/ocicl/random-state@sha256:590425d577dc77a433153704f932e06f5cdff7a0a8cb6d400d99f5a0399f67ef, random-state-20241112-a0ce649/random-state-test.asd
+multilang-documentation-utils, ghcr.io/ocicl/documentation-utils@sha256:b2a1b3f3bcd1a738af85ae2b0168d408c177661eab6d6bbebb254e394d983f54, documentation-utils-20230511-98630dd/multilang-documentation-utils.asd
+documentation-utils, ghcr.io/ocicl/documentation-utils@sha256:b2a1b3f3bcd1a738af85ae2b0168d408c177661eab6d6bbebb254e394d983f54, documentation-utils-20230511-98630dd/documentation-utils.asd
+trivial-indent, ghcr.io/ocicl/trivial-indent@sha256:f1ae624eb2ca37133912e9920587488ea6e2f1d6419ba4a1776e63c2bdff0fd9, trivial-indent-20240503-b5d490f/trivial-indent.asd
+named-readtables, ghcr.io/ocicl/named-readtables@sha256:c13ae35d957cf55f8c877762a24537daee5e8322d9968b14f8c86e8cfc1b2df3, named-readtables-20230809-2c05652/named-readtables.asd
