@@ -74,3 +74,9 @@ multilang-documentation-utils, ghcr.io/ocicl/documentation-utils@sha256:b2a1b3f3
 documentation-utils, ghcr.io/ocicl/documentation-utils@sha256:b2a1b3f3bcd1a738af85ae2b0168d408c177661eab6d6bbebb254e394d983f54, documentation-utils-20230511-98630dd/documentation-utils.asd
 trivial-indent, ghcr.io/ocicl/trivial-indent@sha256:f1ae624eb2ca37133912e9920587488ea6e2f1d6419ba4a1776e63c2bdff0fd9, trivial-indent-20240503-b5d490f/trivial-indent.asd
 named-readtables, ghcr.io/ocicl/named-readtables@sha256:c13ae35d957cf55f8c877762a24537daee5e8322d9968b14f8c86e8cfc1b2df3, named-readtables-20230809-2c05652/named-readtables.asd
+defclass-std, ghcr.io/ocicl/defclass-std@sha256:d8f4854f47d2044e921a95eab705b5339149b1cf55712d82c2e0f3b0171a941f, defclass-std-20240503-a4d3226/defclass-std.asd
+defclass-std-test, ghcr.io/ocicl/defclass-std@sha256:d8f4854f47d2044e921a95eab705b5339149b1cf55712d82c2e0f3b0171a941f, defclass-std-20240503-a4d3226/defclass-std-test.asd
+nclasses, ghcr.io/ocicl/nclasses@sha256:bd2abee35a2ab5779d6bf00c6f03c0f8255c23a3d3f9a5745e05ac0d7367337c, nclasses-20240525-ad74d75/nclasses.asd
+moptilities, ghcr.io/ocicl/moptilities@sha256:5f8845ffb0bd75f31ccef3332fc3d2c4f201b4bd96266f386b93585a50aaedcd, moptilities-20240503-a436f16/moptilities.asd
+moptilities-test, ghcr.io/ocicl/moptilities@sha256:5f8845ffb0bd75f31ccef3332fc3d2c4f201b4bd96266f386b93585a50aaedcd, moptilities-20240503-a436f16/moptilities-test.asd
+access, ghcr.io/ocicl/access@sha256:70ddbc8d65f545805fb18b2a801c316b722cea8b088f51b571c8f92d52382414, access-20240503-a4f87fc/access.asd
