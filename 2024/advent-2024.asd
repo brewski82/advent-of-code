@@ -10,7 +10,8 @@
                "array-operations"
                "fset"
                "nclasses"
-               "access")
+               "access"
+               "bordeaux-threads")
   :components ((:file "advent-2024-day-1")
                (:file "advent-2024-day-2")
                (:file "advent-2024-day-3")
@@ -20,4 +21,5 @@
                (:file "advent-2024-day-7")
                (:file "advent-2024-day-8")
                (:file "advent-2024-day-9")
-               (:file "advent-2024-day-10")))
+               (:file "advent-2024-day-10")
+               (:file "advent-2024-day-11")))
