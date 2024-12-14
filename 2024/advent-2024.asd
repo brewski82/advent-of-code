@@ -19,4 +19,5 @@
                (:file "advent-2024-day-6")
                (:file "advent-2024-day-7")
                (:file "advent-2024-day-8")
-               (:file "advent-2024-day-9")))
+               (:file "advent-2024-day-9")
+               (:file "advent-2024-day-10")))
