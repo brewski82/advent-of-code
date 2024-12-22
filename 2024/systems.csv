@@ -80,3 +80,6 @@ nclasses, ghcr.io/ocicl/nclasses@sha256:bd2abee35a2ab5779d6bf00c6f03c0f8255c23a3
 moptilities, ghcr.io/ocicl/moptilities@sha256:5f8845ffb0bd75f31ccef3332fc3d2c4f201b4bd96266f386b93585a50aaedcd, moptilities-20240503-a436f16/moptilities.asd
 moptilities-test, ghcr.io/ocicl/moptilities@sha256:5f8845ffb0bd75f31ccef3332fc3d2c4f201b4bd96266f386b93585a50aaedcd, moptilities-20240503-a436f16/moptilities-test.asd
 access, ghcr.io/ocicl/access@sha256:70ddbc8d65f545805fb18b2a801c316b722cea8b088f51b571c8f92d52382414, access-20240503-a4f87fc/access.asd
+priority-queue-benchmark, ghcr.io/ocicl/damn-fast-priority-queue@sha256:70b189ec221de0520ada94497214efac82de9ecd2a986b9c9397fc05ed709004, damn-fast-priority-queue-20240701-0f0bcf8/priority-queue-benchmark/priority-queue-benchmark.asd
+damn-fast-stable-priority-queue, ghcr.io/ocicl/damn-fast-priority-queue@sha256:70b189ec221de0520ada94497214efac82de9ecd2a986b9c9397fc05ed709004, damn-fast-priority-queue-20240701-0f0bcf8/damn-fast-stable-priority-queue/damn-fast-stable-priority-queue.asd
+damn-fast-priority-queue, ghcr.io/ocicl/damn-fast-priority-queue@sha256:70b189ec221de0520ada94497214efac82de9ecd2a986b9c9397fc05ed709004, damn-fast-priority-queue-20240701-0f0bcf8/damn-fast-priority-queue/damn-fast-priority-queue.asd

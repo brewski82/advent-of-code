@@ -11,7 +11,8 @@
                "fset"
                "nclasses"
                "access"
-               "bordeaux-threads")
+               "bordeaux-threads"
+               "damn-fast-priority-queue")
   :components ((:file "advent-2024-day-1")
                (:file "advent-2024-day-2")
                (:file "advent-2024-day-3")
@@ -26,4 +27,5 @@
                (:file "advent-2024-day-12")
                (:file "advent-2024-day-13")
                (:file "advent-2024-day-14")
-               (:file "advent-2024-day-15")))
+               (:file "advent-2024-day-15")
+               (:file "advent-2024-day-16")))
