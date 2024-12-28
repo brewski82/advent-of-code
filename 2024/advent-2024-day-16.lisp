@@ -20,6 +20,14 @@
 (defmethod fset:compare ((p1 pos) (p2 pos))
   (fset:compare-slots p1 p2 'row 'col 'direction))
 
+(defmethod print-object ((pos pos) out)
+  (print-unreadable-object (pos out :type t)
+    (format out "~A-~A-~A-~A"
+            (row pos)
+            (col pos)
+            (direction pos)
+            (score pos))))
+
 (defun load-maze (path)
   (bind ((contents (uiop:read-file-lines path))
          (dimensions (list (length contents)
@@ -41,8 +49,9 @@
                             :score 0))
     (bind ((score (search-maze)))
       (update-and-print-maze)
-      (format t "~&part 1 score: ~A~%" (score score))
-      (format t "~&part 2 score: ~A~%" (part-2-score)))))
+      (when score
+        (format t "~&part 1 score: ~A~%" (score score))
+        (format t "~&part 2 score: ~A~%" (part-2-score))))))
 
 (defun part-2-score ()
   (bind ((tiles (fset:empty-set)))
@@ -80,11 +89,11 @@
     (loop for col from 0 below (array-dimension *maze* 1) do
       (princ (aref *maze* row col)))))
 
-(defun add-score (row col score)
-  (setf (gethash (cons row col) *scores*) score))
+(defun add-score (row col direction score)
+  (setf (gethash (list row col direction) *scores*) score))
 
-(defun get-score (row col)
-  (gethash (cons row col) *scores*))
+(defun get-score (row col direction)
+  (gethash (list row col direction) *scores*))
 
 (defun add-parent (row col pos)
   (bind ((parents (gethash (cons row col) *parents*)))
@@ -109,24 +118,36 @@
         unless (fset:contains? *visited* pos)
           do (setf *visited* (fset:includef *visited* pos))
           and do (loop for neighbor in (find-neighbors pos)
-                       for prev-score = (or (get-score (row neighbor) (col neighbor))
+                       for prev-score = (or (get-score (row neighbor) (col neighbor) (direction neighbor))
                                             most-positive-fixnum)
+                       do (print neighbor)
                        when (and (equal 7 (row neighbor))
                                  (equal 6 (col neighbor)))
                          do (format t "~&pos = ~A neigh = ~A"
                                     (score pos) (score neighbor))
-                         when (<= (score neighbor) prev-score)
-                         do (add-score (row neighbor) (col neighbor) (score neighbor))
+                       when (<= (score neighbor) prev-score)
+                         do (add-score (row neighbor) (col neighbor)
+                                       (direction neighbor) (score neighbor))
                          and do (add-parent (row neighbor) (col neighbor)
                                             pos)
                          and do (enqueue neighbor))))
 
 (defun find-neighbors (pos)
-  ;; (remove-if #'null
-  ;;            (list ))
-  (~>> '(east west north south)
-       (mapcar (curry #'find-neighbor pos))
-       (remove-if #'null)))
+  (remove-if #'null
+             (loop with forward = (find-neighbor pos (direction pos))
+                   with list = (list forward)
+                   for direction in (remove (direction pos) '(north east south west))
+                   do (push (make-instance 'pos
+                                           :row (row pos)
+                                           :col (col pos)
+                                           :direction direction
+                                           :score (+ 1000 (score pos)))
+                            list)
+                   finally (return list)))
+  ;; (~>> '(east west north south)
+  ;;      (mapcar (curry #'find-neighbor pos))
+  ;;      (remove-if #'null))
+  )
 
 (defun find-neighbor (pos direction)
   (bind ((row (case direction
