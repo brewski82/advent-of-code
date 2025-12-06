@@ -1,0 +1,14 @@
+cl-change-case, ghcr.io/ocicl/cl-change-case@sha256:72df96e856cd493df958231e6cd5183764833c89bfc8e5bcb585bc52313b488e, cl-change-case-cl-change-case-0.1.0/cl-change-case.asd
+cl-change-case-test, ghcr.io/ocicl/cl-change-case@sha256:72df96e856cd493df958231e6cd5183764833c89bfc8e5bcb585bc52313b488e, cl-change-case-cl-change-case-0.1.0/cl-change-case-test.asd
+fiveam, ghcr.io/ocicl/fiveam@sha256:e283043dc8d31e8df2b214465cf5a06ea07bdbea10e600a40e17aaf9518226ac, fiveam-20240928-e43d6c8/fiveam.asd
+fset, ghcr.io/ocicl/fset@sha256:06ed3b2b8e490fa5ddf01b23af08a5d0d5febf6633b982eab0f721f4cc3c8c15, fset-20251122-19eadf0/fset.asd
+metabang-bind, ghcr.io/ocicl/metabang-bind@sha256:73afec9ebc359c41fa430eeee0dafcc91aebdbac0c790eeb2202c15e90acc63b, metabang-bind-20240503-0819642/metabang-bind.asd
+metabang-bind-test, ghcr.io/ocicl/metabang-bind@sha256:73afec9ebc359c41fa430eeee0dafcc91aebdbac0c790eeb2202c15e90acc63b, metabang-bind-20240503-0819642/metabang-bind-test.asd
+misc-extensions, ghcr.io/ocicl/misc-extensions@sha256:d88a860c856255204eee3d29da8f5662f717d0667a9ee4f3615224036a9654dc, misc-extensions-20251122-438b905/misc-extensions.asd
+mt19937, ghcr.io/ocicl/mt19937@sha256:49c0a25a535cd22212343c67e17635b8e05675ad9cc20aa75ce75e35e842bbe3, MT19937-20240503-78f0419/mt19937.asd
+net.didierverna.asdf-flv, ghcr.io/ocicl/net.didierverna.asdf-flv@sha256:e5cd087d41cf24302a92d9bac426a925f8868b554be2414c0f012c961e3ddb8c, asdf-flv-20240503-3f1de41/net.didierverna.asdf-flv.asd
+str, ghcr.io/ocicl/str@sha256:685078f7554071268bca9e933392904940d6751077718a4aafaf3d0424003f26, cl-str-20250905-69ef8b4/str.asd
+str.test, ghcr.io/ocicl/str@sha256:685078f7554071268bca9e933392904940d6751077718a4aafaf3d0424003f26, cl-str-20250905-69ef8b4/str.test.asd
+transducers, ghcr.io/ocicl/transducers@sha256:02f40e643815e27ef58b0d5a1b9f480328574ad13ebfe1cfa41f00e758337ff2, cl-transducers-20250821-8176dd8/transducers.asd
+trivial-backtrace, ghcr.io/ocicl/trivial-backtrace@sha256:89a3138695bb767c50001402fad60dacfc1e867e4e3d3579cc6f636d3e29a51c, trivial-backtrace-20240503-7f90b4a/trivial-backtrace.asd
+trivial-backtrace-test, ghcr.io/ocicl/trivial-backtrace@sha256:89a3138695bb767c50001402fad60dacfc1e867e4e3d3579cc6f636d3e29a51c, trivial-backtrace-20240503-7f90b4a/trivial-backtrace-test.asd
