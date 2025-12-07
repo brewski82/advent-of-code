@@ -4,10 +4,12 @@
                "metabang-bind"
                "serapeum"
                "cl-ppcre"
-               "fset")
+               "fset"
+               "str")
   :in-order-to ((test-op (test-op "advent-2025/test")))
   :components ((:file "package")
-               (:file "advent-2025-day-1")))
+               (:file "advent-2025-day-1")
+               (:file "advent-2025-day-2")))
 
 (asdf:defsystem "advent-2025/test"
   :depends-on ("fiveam"
@@ -15,7 +17,8 @@
   :components ((:module "tests"
                         :serial t
                 :components ((:file "suite")
-                             (:file "advent-2025-day-1-test"))))
+                             (:file "advent-2025-day-1-test")
+                             (:file "advent-2025-day-2-test"))))
   :perform (asdf:test-op
             (op c)
             (uiop:symbol-call :advent-2025-suite :run-tests)))
