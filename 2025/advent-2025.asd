@@ -9,7 +9,8 @@
   :in-order-to ((test-op (test-op "advent-2025/test")))
   :components ((:file "package")
                (:file "advent-2025-day-1")
-               (:file "advent-2025-day-2")))
+               (:file "advent-2025-day-2")
+               (:file "advent-2025-day-3")))
 
 (asdf:defsystem "advent-2025/test"
   :depends-on ("fiveam"
@@ -18,7 +19,8 @@
                         :serial t
                 :components ((:file "suite")
                              (:file "advent-2025-day-1-test")
-                             (:file "advent-2025-day-2-test"))))
+                             (:file "advent-2025-day-2-test")
+                             (:file "advent-2025-day-3-test"))))
   :perform (asdf:test-op
             (op c)
             (uiop:symbol-call :advent-2025-suite :run-tests)))
