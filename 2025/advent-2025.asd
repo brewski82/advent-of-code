@@ -5,12 +5,14 @@
                "serapeum"
                "cl-ppcre"
                "fset"
-               "str")
+               "str"
+               "advent-utils")
   :in-order-to ((test-op (test-op "advent-2025/test")))
   :components ((:file "package")
                (:file "advent-2025-day-1")
                (:file "advent-2025-day-2")
-               (:file "advent-2025-day-3")))
+               (:file "advent-2025-day-3")
+               (:file "advent-2025-day-4")))
 
 (asdf:defsystem "advent-2025/test"
   :depends-on ("fiveam"
