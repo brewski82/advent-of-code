@@ -13,7 +13,8 @@
                (:file "advent-2025-day-2")
                (:file "advent-2025-day-3")
                (:file "advent-2025-day-4")
-               (:file "advent-2025-day-5")))
+               (:file "advent-2025-day-5")
+               (:file "advent-2025-day-6")))
 
 (asdf:defsystem "advent-2025/test"
   :depends-on ("fiveam"
@@ -25,7 +26,8 @@
                              (:file "advent-2025-day-2-test")
                              (:file "advent-2025-day-3-test")
                              (:file "advent-2025-day-4-test")
-                             (:file "advent-2025-day-5-test"))))
+                             (:file "advent-2025-day-5-test")
+                             (:file "advent-2025-day-6-test"))))
   :perform (asdf:test-op
             (op c)
             (uiop:symbol-call :advent-2025-suite :run-tests)))

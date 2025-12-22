@@ -8,7 +8,9 @@
            #:mapc-array
            #:reduce-array
            #:neighbors
-           #:to-char-array))
+           #:to-char-array
+           #:array-to-lists
+           #:transpose))
 
 (in-package #:advent-utils)
 
@@ -102,3 +104,13 @@ accumulated value."
   (make-array (list (length lines)
                     (length (first lines)))
               :initial-contents lines))
+
+(defun array-to-lists (array)
+  (mapcar (lambda (i)
+            (mapcar (lambda (j)
+                      (aref array i j))
+                    (alexandria:iota (array-dimension array 1))))
+          (alexandria:iota (array-dimension array 0))))
+
+(defun transpose (matrix)
+  (apply #'mapcar #'list matrix))
