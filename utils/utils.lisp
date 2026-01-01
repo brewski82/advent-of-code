@@ -10,7 +10,12 @@
            #:neighbors
            #:to-char-array
            #:array-to-lists
-           #:transpose))
+           #:transpose
+           #:point
+           #:distance
+           #:x
+           #:y
+           #:z))
 
 (in-package #:advent-utils)
 
@@ -114,3 +119,34 @@ accumulated value."
 
 (defun transpose (matrix)
   (apply #'mapcar #'list matrix))
+
+(defclass point (fset:identity-ordering-mixin)
+  ((x :accessor x :initarg :x)
+   (y :accessor y :initarg :y)))
+
+(defclass 2d-point (point) ())
+
+(defmethod print-object ((p 2d-point) stream)
+  (print-unreadable-object (p stream :type t :identity nil)
+    (format stream "(~a, ~a)" (x p) (y p))))
+
+(defclass 3d-point (point)
+  ((z :accessor z :initarg :z)))
+
+(defmethod print-object ((p 3d-point) stream)
+  (print-unreadable-object (p stream :type t :identity nil)
+    (format stream "(~a, ~a, ~a)" (x p) (y p) (z p))))
+
+(defgeneric distance (a b)
+  (:method ((a 2d-point) (b 2d-point))
+    (sqrt (+ (expt (- (x a) (x b)) 2)
+             (expt (- (y a) (y b)) 2))))
+  (:method ((a 3d-point) (b 3d-point))
+    (sqrt (+ (expt (- (x a) (x b)) 2)
+             (expt (- (y a) (y b)) 2)
+             (expt (- (z a) (z b)) 2)))))
+
+(defun point (&key x y z)
+  (if z
+      (make-instance '3d-point :x x :y y :z z)
+      (make-instance '2d-point :x x :y y)))
