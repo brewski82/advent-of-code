@@ -1,3 +1,4 @@
 **/systems/*
 *.fasl
 ocicl/
+.agent-shell/
