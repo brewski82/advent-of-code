@@ -89,6 +89,7 @@ accumulated value."
       acc)))
 
 (defun valid-array-indexes-p (arr row col)
+  "Return T if ROW and COL are valid indices for 2D array ARR."
   (let* ((array-dimensions (array-dimensions arr))
          (rows (first array-dimensions))
          (cols (second array-dimensions)))
@@ -136,11 +137,13 @@ accumulated value."
                           (list row (1- col))))))
 
 (defun to-char-array (lines)
+  "Convert list of lines into a 2D character array."
   (make-array (list (length lines)
                     (length (first lines)))
               :initial-contents lines))
 
 (defun array-to-lists (array)
+  "Convert a 2D array into a list of lists."
   (mapcar (lambda (i)
             (mapcar (lambda (j)
                       (aref array i j))
@@ -148,35 +151,42 @@ accumulated value."
           (alexandria:iota (array-dimension array 0))))
 
 (defun transpose (matrix)
+  "Transpose a matrix (list of lists)."
   (apply #'mapcar #'list matrix))
 
 (defclass point ()
   ((x :accessor x :initarg :x)
-   (y :accessor y :initarg :y)))
+   (y :accessor y :initarg :y))
+  (:documentation "Base class for geometric points with X and Y coordinates."))
 
 (defmethod fset:compare ((p1 point) (p2 point))
   (fset:compare-slots p1 p2 'x 'y))
 
-(defclass 2d-point (point) ())
+(defclass 2d-point (point)
+  ()
+  (:documentation "A 2D point with X and Y coordinates."))
 
 (defmethod print-object ((p 2d-point) stream)
   (print-unreadable-object (p stream :type t :identity nil)
     (format stream "(~a, ~a)" (x p) (y p))))
 
 (defclass 3d-point (point)
-  ((z :accessor z :initarg :z)))
+  ((z :accessor z :initarg :z))
+  (:documentation "A 3D point with X, Y, and Z coordinates."))
 
 (defmethod fset:compare ((p1 3d-point) (p2 3d-point))
   (fset:compare-slots p1 p2 'x 'y 'z))
 
 (defclass edge ()
   ((point-a :accessor point-a :initarg :point-a)
-   (point-b :accessor point-b :initarg :point-b)))
+   (point-b :accessor point-b :initarg :point-b))
+  (:documentation "An edge connecting two points."))
 
 (defmethod fset:compare ((e1 edge) (e2 edge))
   (fset:compare-slots e1 e2 'point-a 'point-b))
 
 (defun make-edge (p1 p2)
+  "Create an edge between P1 and P2, normalizing order for consistent comparison."
   (case (fset:compare p1 p2)
     (:greater (make-instance 'edge :point-a p2 :point-b p1))
     (otherwise (make-instance 'edge :point-a p1 :point-b p2))))
@@ -186,10 +196,12 @@ accumulated value."
     (format stream "edge(~a, ~a)" (point-a e) (point-b e))))
 
 (defgeneric row (point)
+  (:documentation "Get the row coordinate (Y value) of a point.")
   (:method ((point 2d-point))
     (y point)))
 
 (defgeneric col (point)
+  (:documentation "Get the column coordinate (X value) of a point.")
   (:method ((point 2d-point))
     (x point)))
 
@@ -198,6 +210,7 @@ accumulated value."
     (format stream "(~a, ~a, ~a)" (x p) (y p) (z p))))
 
 (defgeneric distance (a b)
+  (:documentation "Calculate Euclidean distance between two points.")
   (:method ((a 2d-point) (b 2d-point))
     (sqrt (+ (expt (- (x a) (x b)) 2)
              (expt (- (y a) (y b)) 2))))
@@ -207,11 +220,14 @@ accumulated value."
              (expt (- (z a) (z b)) 2)))))
 
 (defgeneric area (a b)
+  (:documentation "Calculate bounding box area between two points (inclusive).")
   (:method ((a 2d-point) (b 2d-point))
     (* (1+ (abs (- (x a) (x b))))
        (1+ (abs (- (y a) (y b)))))))
 
 (defun point (&key x y z row col)
+  "Create a 2D or 3D point.
+Coordinates can be specified as X/Y or ROW/COL. If Z is provided, creates 3D point."
   (if z
       (make-instance '3d-point :x x :y y :z z)
       (make-instance '2d-point :x (or x col) :y (or y row))))
@@ -224,7 +240,9 @@ accumulated value."
     (point :x x :y y )))
 
 (defun csv-lines-to-2d-points (lines)
+  "Parse multiple CSV lines into a list of 2D points."
   (mapcar #'csv-line-to-2d-point lines))
 
 (defun make-grid (row-count col-count &key initial-element)
+  "Create a 2D grid array with ROW-COUNT rows and COL-COUNT columns."
   (make-array (list row-count col-count) :initial-element initial-element))
