@@ -21,7 +21,7 @@
 ;;   (is (= 0 (advent-2025-day-10::day-10-part-1))))
 
 (test process-part-2
-  (is (eql nil (advent-2025-day-10::process-part-2 *test*))))
+  (is (advent-2025-day-10::process-part-2 *test*)))
 
 ;; (test part-2
 ;;   (is (= 0 (advent-2025-day-10::day-10-part-2))))
