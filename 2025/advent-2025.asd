@@ -6,6 +6,7 @@
                "cl-ppcre"
                "fset"
                "str"
+               "fare-memoization"
                "advent-utils")
   :in-order-to ((test-op (test-op "advent-2025/test")))
   :components ((:file "package")
@@ -18,7 +19,8 @@
                (:file "advent-2025-day-7")
                (:file "advent-2025-day-8")
                (:file "advent-2025-day-9")
-               (:file "advent-2025-day-10")))
+               (:file "advent-2025-day-10")
+               (:file "advent-2025-day-11")))
 
 (asdf:defsystem "advent-2025/test"
   :depends-on ("fiveam"
@@ -35,7 +37,8 @@
                              (:file "advent-2025-day-7-test")
                              (:file "advent-2025-day-8-test")
                              (:file "advent-2025-day-9-test")
-                             (:file "advent-2025-day-10-test"))))
+                             (:file "advent-2025-day-10-test")
+                             (:file "advent-2025-day-11-test"))))
   :perform (asdf:test-op
             (op c)
             (uiop:symbol-call :advent-2025-suite :run-tests)))

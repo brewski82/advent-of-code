@@ -3,6 +3,7 @@ cl-change-case, ghcr.io/ocicl/cl-change-case@sha256:e13836432579fcede28ec71d8566
 cl-change-case-test, ghcr.io/ocicl/cl-change-case@sha256:e13836432579fcede28ec71d8566025c8760d07175f94307876ceab96ceac651, cl-change-case-cl-change-case-0.1.0/cl-change-case-test.asd
 cl-ppcre, ghcr.io/ocicl/cl-ppcre@sha256:bf073924cf4fd5957a4fd961a95d446ed0e53fa32a5002cbd2d52182874f45e5, cl-ppcre-20250606-a2ea581/cl-ppcre.asd
 cl-ppcre-unicode, ghcr.io/ocicl/cl-ppcre@sha256:bf073924cf4fd5957a4fd961a95d446ed0e53fa32a5002cbd2d52182874f45e5, cl-ppcre-20250606-a2ea581/cl-ppcre-unicode.asd
+fare-memoization, ghcr.io/ocicl/fare-memoization@sha256:d540a36c6e91e77507cb44ffb3ac0d6502bc73f6b51011e769a2c374e355b2a2, fare-memoization-20240503-8b43ac6/fare-memoization.asd
 fiveam, ghcr.io/ocicl/fiveam@sha256:e283043dc8d31e8df2b214465cf5a06ea07bdbea10e600a40e17aaf9518226ac, fiveam-20240928-e43d6c8/fiveam.asd
 fset, ghcr.io/ocicl/fset@sha256:06ed3b2b8e490fa5ddf01b23af08a5d0d5febf6633b982eab0f721f4cc3c8c15, fset-20251122-19eadf0/fset.asd
 metabang-bind, ghcr.io/ocicl/metabang-bind@sha256:73afec9ebc359c41fa430eeee0dafcc91aebdbac0c790eeb2202c15e90acc63b, metabang-bind-20240503-0819642/metabang-bind.asd
