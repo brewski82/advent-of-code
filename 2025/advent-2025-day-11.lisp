@@ -67,7 +67,7 @@ Returns count of complete paths that visit both FFT and DAC before \"out\"."
   (cond ((and (string= node "out") fft dac) 1)
         ((string= node "out") 0)
         ((null (gethash node table)) 0)
-        (t (t:transduce (t:map (curry #'dfs table
+        (t (t:transduce (t:map (curry #'dfs-2 table
                                       :fft (or fft (string= node "fft"))
                                       :dac (or dac (string= node "dac"))
                                       :node))
