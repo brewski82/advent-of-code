@@ -159,8 +159,7 @@ accumulated value."
    (y :accessor y :initarg :y))
   (:documentation "Base class for geometric points with X and Y coordinates."))
 
-(defmethod fset:compare ((p1 point) (p2 point))
-  (fset:compare-slots p1 p2 'x 'y))
+(fset2:define-equality-slots point 'x 'y)
 
 (defclass 2d-point (point)
   ()
@@ -174,20 +173,19 @@ accumulated value."
   ((z :accessor z :initarg :z))
   (:documentation "A 3D point with X, Y, and Z coordinates."))
 
-(defmethod fset:compare ((p1 3d-point) (p2 3d-point))
-  (fset:compare-slots p1 p2 'x 'y 'z))
+(fset2:define-equality-slots 3d-point 'x 'y 'z)
 
 (defclass edge ()
   ((point-a :accessor point-a :initarg :point-a)
    (point-b :accessor point-b :initarg :point-b))
   (:documentation "An edge connecting two points."))
 
-(defmethod fset:compare ((e1 edge) (e2 edge))
-  (fset:compare-slots e1 e2 'point-a 'point-b))
+(defmethod fset2:compare ((e1 edge) (e2 edge))
+  (fset2:compare-slots e1 e2 'point-a 'point-b))
 
 (defun make-edge (p1 p2)
   "Create an edge between P1 and P2, normalizing order for consistent comparison."
-  (case (fset:compare p1 p2)
+  (case (fset2:compare p1 p2)
     (:greater (make-instance 'edge :point-a p2 :point-b p1))
     (otherwise (make-instance 'edge :point-a p1 :point-b p2))))
 

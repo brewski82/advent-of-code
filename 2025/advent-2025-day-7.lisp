@@ -28,8 +28,7 @@
 (defstruct row index value)
 (defstruct item index value)
 
-(defmethod fset:compare ((b1 beam) (b2 beam))
-  (fset:compare (beam-column b1) (beam-column b2)))
+(fset2:define-equality-slots beam 'column)
 
 (defun count-manifold-splits (rows)
   "Process all rows of the manifold, tracking beam propagation and splits. Returns
@@ -37,7 +36,7 @@ final manifold-state containing split count and active beams."
   (t:transduce #'t:pass
                (t:fold #'process-row
                        (make-manifold-state :split-count 0
-                                            :incoming-beams (fset:empty-set)))
+                                            :incoming-beams (fset2:empty-set)))
                rows))
 
 (defun process-row (manifold-state row)
@@ -47,7 +46,7 @@ manifold-state with new incoming beams for the next row."
   (bind ((manifold-row-state (count-manifold-row-splits manifold-state row))
          ((:structure manifold-row-state- split-count incoming-beams beams splitters)
           manifold-row-state)
-         (new-incoming-beams (fset:set-difference (fset:reduce #'merge-beam-into beams :initial-value incoming-beams)
+         (new-incoming-beams (fset2:set-difference (fset2:reduce #'merge-beam-into beams :initial-value incoming-beams)
                                               splitters)))
     (make-manifold-state :split-count split-count :incoming-beams new-incoming-beams)))
 
@@ -60,9 +59,9 @@ Returns a manifold-row-state with updated beams and split counts."
     (t:transduce (t:comp #'t:enumerate (t:map #'to-item))
                  (t:fold #'process-cell
                          (make-manifold-row-state :split-count split-count
-                                                  :beams (fset:empty-set)
+                                                  :beams (fset2:empty-set)
                                                   :incoming-beams incoming-beams
-                                                  :splitters (fset:empty-set)))
+                                                  :splitters (fset2:empty-set)))
                  row)))
 
 (defun process-cell (manifold-row-state item)
@@ -89,34 +88,34 @@ splitters (^), and empty space (.). Updates beam positions and counts splits."
                                     :split-count (if split-p
                                                      (1+ split-count)
                                                      split-count)
-                                    :splitters (fset:with splitters (make-beam :column index))))
+                                    :splitters (fset2:with splitters (make-beam :column index))))
       (#\. manifold-row-state))))
 
 (defun merge-beam-into (set beam)
   "Merge BEAM into SET, combining path counts if a beam already exists at that column.
-Used as a reducer function with fset:reduce."
+Used as a reducer function with fset2:reduce."
   (let ((existing (find-beam set (beam-column beam))))
     (if existing
-        (fset:with (fset:less set existing)
+        (fset2:with (fset2:less set existing)
                    (make-beam :column (beam-column beam)
                               :path-count (+ (beam-path-count existing)
                                              (beam-path-count beam))))
-        (fset:with set beam))))
+        (fset2:with set beam))))
 
 (defun merge-beams (beams column count)
   "Merge a beam with COUNT paths at COLUMN into BEAMS set, combining path counts if
 beam exists."
   (bind ((beam (find-beam beams column)))
     (if beam
-        (fset:with (fset:less beams beam)
+        (fset2:with (fset2:less beams beam)
                    (make-beam :column column
                               :path-count (+ count (beam-path-count beam))))
-        (fset:with beams (make-beam :column column
+        (fset2:with beams (make-beam :column column
                                     :path-count count)))))
 
 (defun find-beam (beams column)
   "Find a beam at COLUMN in the BEAMS set."
-  (fset:find column beams :key #'beam-column))
+  (fset2:find column beams :key #'beam-column))
 
 (defun to-item (enumeration)
   (bind (((index . value) enumeration))
@@ -141,4 +140,4 @@ tracks how many different paths reach that position."
 
 (defun count-paths (beams)
   "Sum the path counts of all beams, giving total number of distinct timelines."
-  (fset:reduce #'+ beams :key #'beam-path-count))
+  (fset2:reduce #'+ beams :key #'beam-path-count))

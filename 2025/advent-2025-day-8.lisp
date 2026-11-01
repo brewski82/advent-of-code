@@ -28,9 +28,9 @@
        compute-all-distances
        sort-distances
        (merge-first-n-connections limit)
-       fset:range                         ; Get all distinct circuits
+       fset2:range                         ; Get all distinct circuits
        sort-boxes
-       (fset:convert 'list)
+       (fset2:convert 'list)
        multiply-largest-three-sizes))
 
 (defun to-points (lines)
@@ -72,7 +72,7 @@
 (defun merge-first-n-connections (limit distances)
   "Merge circuits by connecting the first N closest pairs of junction boxes."
   (t:transduce (t:take limit)
-               (t:fold #'union-boxes (fset:empty-map))
+               (t:fold #'union-boxes (fset2:empty-map))
                distances))
 
 (defun union-boxes (map distance)
@@ -82,23 +82,23 @@ circuit (set of points). Returns updated map where both points and their
 circuits point to the merged set."
   (bind (((:structure distance- point-a point-b) distance)
          ;; Get or create a new single-point circuit for each point
-         (point-a-box (or (fset:@ map point-a) (fset:set point-a)))
-         (point-b-box (or (fset:@ map point-b) (fset:set point-b)))
+         (point-a-box (or (fset2:@ map point-a) (fset2:set point-a)))
+         (point-b-box (or (fset2:@ map point-b) (fset2:set point-b)))
          ;; Merge the two circuits into one
-         (connected-box (fset:union point-a-box point-b-box)))
+         (connected-box (fset2:union point-a-box point-b-box)))
     ;; Update the map so all points in the merged circuit point to the combined set
-    (fset:reduce (lambda (m k)
-                   (fset:with m k connected-box))
+    (fset2:reduce (lambda (m k)
+                   (fset2:with m k connected-box))
                  connected-box
                  :initial-value map)))
 
 (defun sort-boxes (boxes)
   "Sort circuits (sets of boxes) by size in descending order."
-  (fset:sort boxes #'> :key #'fset:size))
+  (fset2:sort boxes #'> :key #'fset2:size))
 
 (defun multiply-largest-three-sizes (boxes)
   "Multiply together the sizes of the three largest circuits."
-  (reduce #'* (mapcar #'fset:size (serapeum:take 3 boxes))))
+  (reduce #'* (mapcar #'fset2:size (serapeum:take 3 boxes))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Part 2: Keep connecting until all boxes form a single circuit
@@ -123,7 +123,7 @@ final X coordinates."
 product of the X coordinates of the final two connected boxes."
   (t:transduce #'t:pass
                (t:fold (curry #'union-boxes-until-complete box-count)
-                       (fset:empty-map))
+                       (fset2:empty-map))
                distances))
 
 (defun union-boxes-until-complete (box-count map distance)
@@ -132,13 +132,13 @@ or a 'reduced' value when complete. The reduced value is the product of the X
 coordinates of the final two boxes."
   (bind (((:structure distance- point-a point-b) distance)
          ;; Get or create circuits for each point
-         (point-a-box (or (fset:@ map point-a) (fset:set point-a)))
-         (point-b-box (or (fset:@ map point-b) (fset:set point-b)))
+         (point-a-box (or (fset2:@ map point-a) (fset2:set point-a)))
+         (point-b-box (or (fset2:@ map point-b) (fset2:set point-b)))
          ;; Merge the two circuits
-         (connected-box (fset:union point-a-box point-b-box))
+         (connected-box (fset2:union point-a-box point-b-box))
          ;; Update map so all points in merged circuit point to it
-         (map (fset:reduce (lambda (m k)
-                             (fset:with m k connected-box))
+         (map (fset2:reduce (lambda (m k)
+                             (fset2:with m k connected-box))
                            connected-box
                            :initial-value map)))
     ;; Check if we're done - if so, return the product of X coordinates
@@ -149,8 +149,8 @@ coordinates of the final two boxes."
 (defun all-connected-p (box-count map)
   "Check if all boxes are now in a single circuit. Returns true if there's only one
 unique circuit set and it contains all boxes."
-  (and (= 1 (fset:size (fset:range map))) ; Only one unique circuit set
+  (and (= 1 (fset2:size (fset2:range map))) ; Only one unique circuit set
        (= box-count (~>> map
-                         fset:range
-                         (funcall (rcurry #'fset:at-index 0))
-                         fset:size))))
+                         fset2:range
+                         (funcall (rcurry #'fset2:at-index 0))
+                         fset2:size))))

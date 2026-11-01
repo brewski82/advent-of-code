@@ -159,7 +159,7 @@ tiles."
          (grid (make-grid (1+ bottom-most)
                           (1+ right-most)
                           :initial-element #\.)))
-    (fset:image (lambda (point)
+    (fset2:image (lambda (point)
                   (setf (aref grid (row point) (col point)) #\#))
                 points)
     grid))
@@ -168,7 +168,7 @@ tiles."
   "Find the extreme coordinate in the given direction. DIRECTION is one of
 :LEFT-MOST, :RIGHT-MOST, :TOP-MOST, :BOTTOM-MOST"
   (ecase direction
-    (:left-most (fset:reduce #'min points :key #'x))
-    (:right-most (fset:reduce #'max points :key #'x))
-    (:top-most (fset:reduce #'min points :key #'y))
-    (:bottom-most (fset:reduce #'max points :key #'y))))
+    (:left-most (fset2:reduce #'min points :key #'x))
+    (:right-most (fset2:reduce #'max points :key #'x))
+    (:top-most (fset2:reduce #'min points :key #'y))
+    (:bottom-most (fset2:reduce #'max points :key #'y))))
