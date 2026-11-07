@@ -25,7 +25,8 @@
            #:col
            #:make-edge
            #:point-a
-           #:point-b))
+           #:point-b
+           #:export-all-symbols))
 
 (in-package #:advent-utils)
 
@@ -244,3 +245,15 @@ Coordinates can be specified as X/Y or ROW/COL. If Z is provided, creates 3D poi
 (defun make-grid (row-count col-count &key initial-element)
   "Create a 2D grid array with ROW-COUNT rows and COL-COUNT columns."
   (make-array (list row-count col-count) :initial-element initial-element))
+
+;;; Package management
+
+(defun export-all-symbols (package-designator)
+  "Programmatically exports all symbols whose home package is PACKAGE-DESIGNATOR."
+  (let ((package (or (find-package package-designator)
+                     (error "package not found: ~A" package-designator))))
+    (do-external-symbols (sym package)
+        ;; Only export the symbol if its home package matches (skips inherited
+        ;; symbols)
+        (when (eq (symbol-package sym) package)
+          (export sym)))))
